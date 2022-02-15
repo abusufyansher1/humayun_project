@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -16,7 +15,7 @@ class StudentProtected
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role==3) {
+        if (session('role')==3) {
          return $next($request);  
        }
        else{

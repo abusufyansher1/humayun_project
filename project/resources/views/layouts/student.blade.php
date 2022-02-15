@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin</title>
+  <title>Student</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -78,7 +78,7 @@
                with font-awesome or any other icon font library -->
         
           <li class="nav-item">
-            <a href="/admin/dashboard" class="nav-link">
+            <a href="/student/dashboard" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
@@ -87,42 +87,23 @@
             </a>
           </li>
            <li class="nav-item">
-            <a href="/admin/classes" class="nav-link">
+            <a href="/student/subjects" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Classes
-               
+                Subjects
               </p>
             </a>
           </li>
            <li class="nav-item">
-            <a href="/admin/teachers" class="nav-link">
+            <a href="/student/subject/exam/0" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Teachers
-               
+                Conducted Exams
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="/admin/students" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Students
-               
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/admin/result" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Results
-               
-              </p>
-            </a>
-          </li>
-          
+         
+         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

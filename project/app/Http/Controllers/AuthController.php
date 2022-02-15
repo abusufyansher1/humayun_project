@@ -23,7 +23,7 @@ class AuthController extends Controller
             if(!$users)
    	{
    		session()->flash('data','Incorret credentials');
-     return redirect('/');
+     return redirect('/not2s');
    		// return "";
    	}
    	else{
@@ -37,7 +37,7 @@ class AuthController extends Controller
     	elseif($users->role=='3')
     		return redirect('/student/dashboard');
     	else{
-    		return redirect('/');
+    		return redirect('/not');
     	}
 
    	}

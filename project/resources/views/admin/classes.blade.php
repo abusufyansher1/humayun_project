@@ -37,13 +37,11 @@ use App\Http\Controllers\AdminController;
 $data=AdminController::get_subjects_by_class($class_id);
 
 ?>
-
-
                 <td>@foreach($data as $row2)
-                     <span class='badge badge-info'>{{$row2->subject}}</span> 
+                     <span class='badge badge-info'>{{$row2->subject}} ({{$row2->credit}})</span> 
                     @endforeach
                 </td>
-                <td><a data-toggle="modal" data-target="#subjectmodal" class="">Add subject</a></td>
+                <td><a data-class_id="{{$row->class_id}}" class="addsubjectbtn">Add subject</a></td>
                 <td><a href=''>Edit</a> | <a href=''>Delete</a></td>
               </tr>
               @endforeach
@@ -100,8 +98,19 @@ $data=AdminController::get_subjects_by_class($class_id);
       <div class="modal-body">
         <form action="course/add" method="post">
           @csrf()
+          <input id='modal_class_id' type='hidden' name='class_id'>
           <label>Subject</label>
           <input class="form-control" type="" name="subject">
+          <label>Credit Hrs</label>
+          <input class="form-control" type="" name="credit">
+          <label>Assign Teacher</label>
+          <select class='form-control' name='teacher_id'>
+          @foreach($teacher_list as $rowtech)
+          @endforeach
+          
+            <option value='{{$rowtech->id}}'>{{$rowtech->name}}
+          </option>
+          </select>
           <label></label>
           <input class="form-control btn btn-info" type="submit" value="save"  name="submit">
          
@@ -113,5 +122,18 @@ $data=AdminController::get_subjects_by_class($class_id);
     </div>
 
   </div>
-</div>  
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+ <script>
+    
+$(document).ready(function(){
+    $(".addsubjectbtn").on("click", function(){
+        var class_id = $(this).attr("data-class_id");
+        $("#modal_class_id").val(class_id);
+        $("#subjectmodal").modal('show');
+    });
+});
+</script>
   @endsection
+  
+ 

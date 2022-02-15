@@ -28,7 +28,6 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 Route::post('/auth/check', [AuthController::class,'index']);
-
 Route::group(['middleware'=>['AdminProtected']],function(){
 	Route::get('/admin/dashboard', [AdminController::class,'index']);
    Route::get('/admin/students', [AdminController::class,'view_students']);
@@ -37,6 +36,10 @@ Route::group(['middleware'=>['AdminProtected']],function(){
  Route::get('/admin/teachers', [AdminController::class,'view_teachers']);
  Route::get('/admin/classes', [AdminController::class,'view_classes']);
  Route::post('/admin/class/add', [AdminController::class,'add_class']);
+ Route::post('/admin/course/add', [AdminController::class,'add_course']);
+ Route::get('/admin/result', [AdminController::class,'view_result']);
+ Route::post('/admin/result', [AdminController::class,'view_conducted_exams']);
+ Route::get('/admin/result/display/{c_exam_id}', [AdminController::class,'display_result']);
 
 });
 Route::group(['middleware'=>['TeacherProtected']],function(){
@@ -44,4 +47,6 @@ Route::group(['middleware'=>['TeacherProtected']],function(){
 });
 Route::group(['middleware'=>['StudentProtected']],function(){
 	Route::get('/student/dashboard', [StudentController::class,'index']);
+    Route::get('/student/subjects', [StudentController::class,'get_subjects']);
+    Route::get('/student/subject/exam/{id}', [StudentController::class,'get_exams']);
 });
