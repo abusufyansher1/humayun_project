@@ -17,7 +17,7 @@ class TeacherProtected
      */
     public function handle(Request $request, Closure $next)
     {
-     if (Auth::user()->role==2) {
+     if (session('role')==2) {
          return $next($request);  
        }
        else{

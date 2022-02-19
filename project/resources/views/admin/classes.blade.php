@@ -70,6 +70,11 @@ $data=AdminController::get_subjects_by_class($class_id);
           <label>Class name</label>
           <input class="form-control" type="" name="class">
 
+          <label>Equivallent</label>
+          <input class="form-control" type="" name="equal">
+          <label>Eligibility Criteria</label>
+          <input class="form-control" type="" name="eligibility">
+
         
 
           <label></label>

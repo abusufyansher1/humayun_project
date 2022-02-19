@@ -30,7 +30,10 @@ class AdminController extends Controller
 	{
 		$data=	new Classes;
 		$data->class=$req->input('class');
+		$data->equivallent=$req->input('equal');
+		$data->eligibility=$req->input('eligibility');
 		$data->save();
+		return redirect('/admin/classes');
 	}
 	function add_course(Request $req)
 	{

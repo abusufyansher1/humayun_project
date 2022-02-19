@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\facades\Auth;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -21,9 +22,10 @@ use App\Http\Middleware\StudentProtected;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class,'index']);
+Route::get('/programs', [HomeController::class,'programpage']);
+
+Route::get('/faculties', [HomeController::class,'facultypage']);
 Route::get('/login', function () {
     return view('auth.login');
 });
@@ -44,6 +46,12 @@ Route::group(['middleware'=>['AdminProtected']],function(){
 });
 Route::group(['middleware'=>['TeacherProtected']],function(){
 	Route::get('/teacher/dashboard', [TeacherController::class,'index']);
+    Route::get('/teacher/subjects', [TeacherController::class,'subjects']);
+    Route::get('/teacher/conducted_exams/{req}', [TeacherController::class,'conducted_exams_page']);
+    Route::post('teacher/conduct_exam/add', [TeacherController::class,'conduct_new_exam']);
+    Route::get('/teacher/result/{req}', [TeacherController::class,'result']);
+    Route::post('/teacher/saveresult', [TeacherController::class,'saveresult']);
+    
 });
 Route::group(['middleware'=>['StudentProtected']],function(){
 	Route::get('/student/dashboard', [StudentController::class,'index']);

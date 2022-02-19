@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2022 at 07:16 AM
+-- Generation Time: Feb 19, 2022 at 04:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -30,6 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `classes` (
   `class_id` int(11) NOT NULL,
   `class` varchar(256) NOT NULL,
+  `equivallent` varchar(30) NOT NULL,
+  `eligibility` varchar(256) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -38,10 +40,11 @@ CREATE TABLE `classes` (
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`class_id`, `class`, `created_at`, `updated_at`) VALUES
-(1, 'BS Software', '2022-02-08 08:58:51', '2022-02-08 08:58:51'),
-(2, 'MCS', '2022-02-09 02:16:07', '2022-02-09 02:16:07'),
-(3, 'MS CS', '2022-02-10 13:10:53', '2022-02-10 13:10:53');
+INSERT INTO `classes` (`class_id`, `class`, `equivallent`, `eligibility`, `created_at`, `updated_at`) VALUES
+(1, 'BS Software', '16 Years', 'Fsc, Fcs', '2022-02-08 08:58:51', '2022-02-08 08:58:51'),
+(2, 'MCS', '16 Years', 'Bsc in Computer Science', '2022-02-09 02:16:07', '2022-02-09 02:16:07'),
+(3, 'MS CS', '18 Years', 'BSCS, Mcs', '2022-02-10 13:10:53', '2022-02-10 13:10:53'),
+(4, 'PhD', '20 Years', 'MS/Mphil in CS', '2022-02-19 06:17:42', '2022-02-19 06:17:42');
 
 -- --------------------------------------------------------
 
@@ -63,9 +66,11 @@ CREATE TABLE `conducted_exams` (
 --
 
 INSERT INTO `conducted_exams` (`id`, `exam_id`, `subject_id`, `published_status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 0, '2022-02-10 11:09:19', '2022-02-10 11:09:19'),
-(5, 2, 1, 0, '2022-02-11 05:53:07', '2022-02-11 05:53:07'),
-(7, 1, 2, 0, '2022-02-12 19:12:13', '2022-02-12 19:12:13');
+(1, 1, 1, 1, '2022-02-10 11:09:19', '2022-02-10 11:09:19'),
+(5, 2, 1, 1, '2022-02-11 05:53:07', '2022-02-11 05:53:07'),
+(7, 1, 2, 1, '2022-02-12 19:12:13', '2022-02-12 19:12:13'),
+(9, 1, 1, 1, '2022-02-16 00:21:18', '2022-02-16 00:21:18'),
+(10, 1, 1, 1, '2022-02-16 00:21:47', '2022-02-16 00:21:47');
 
 -- --------------------------------------------------------
 
@@ -220,7 +225,10 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `std_id`, `c_exam_id`, `obt_marks`, `created_at`, `updated_at`) VALUES
-(2, 10, 1, 10, '2022-02-11 07:09:46', '2022-02-11 07:09:46');
+(19, 3, 5, 100, '2022-02-19 08:58:23', '2022-02-19 04:31:37'),
+(20, 10, 5, 66, '2022-02-19 08:58:23', '2022-02-19 04:31:41'),
+(24, 3, 9, 100, '2022-02-19 04:31:52', '2022-02-19 04:31:52'),
+(25, 10, 9, 100, '2022-02-19 04:31:52', '2022-02-19 04:31:52');
 
 -- --------------------------------------------------------
 
@@ -420,7 +428,7 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `results`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `std_id` (`std_id`),
+  ADD UNIQUE KEY `std_id` (`std_id`,`c_exam_id`),
   ADD KEY `results_ibfk_3` (`c_exam_id`);
 
 --
@@ -467,13 +475,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `conducted_exams`
 --
 ALTER TABLE `conducted_exams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `designations`
@@ -515,7 +523,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `student_enrollments`
