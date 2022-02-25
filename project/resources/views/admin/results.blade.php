@@ -27,7 +27,7 @@
             <div class='col-lg-12'>
                 <table class='table'>
                     <thead>
-                        <tr><th>#</th><th>Exam type</th><th>Status</th></tr>
+                        <tr><th>#</th><th>Exam type</th><th>Status</th><th>Action</th></tr>
                     </thead>
                     <tbody>
                         <?php if(isset($conducted_exam))
@@ -44,6 +44,12 @@
                             @else
                             <p><span class='badge badge-info'>Published</span></p>
                             @endif
+                        </td>
+                        <td>
+                            @if($row2->published_status==0)
+                                <p><span class='badge badge-warning'>Click to publish</span></p>
+                                
+                            @enfi
                         </td>
                     </tr>
                         @endforeach

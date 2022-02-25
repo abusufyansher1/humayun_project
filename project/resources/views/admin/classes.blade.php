@@ -41,8 +41,8 @@ $data=AdminController::get_subjects_by_class($class_id);
                      <span class='badge badge-info'>{{$row2->subject}} ({{$row2->credit}})</span> 
                     @endforeach
                 </td>
-                <td><a data-class_id="{{$row->class_id}}" class="addsubjectbtn">Add subject</a></td>
-                <td><a href=''>Edit</a> | <a href=''>Delete</a></td>
+                <td><a href='#' data-class_id="{{$row->class_id}}" class="addsubjectbtn">Add subject</a></td>
+                <td><a href='#'>Edit</a> | <a href='#'>Delete</a></td>
               </tr>
               @endforeach
             </tbody>
@@ -111,10 +111,11 @@ $data=AdminController::get_subjects_by_class($class_id);
           <label>Assign Teacher</label>
           <select class='form-control' name='teacher_id'>
           @foreach($teacher_list as $rowtech)
-          @endforeach
+          
           
             <option value='{{$rowtech->id}}'>{{$rowtech->name}}
           </option>
+          @endforeach
           </select>
           <label></label>
           <input class="form-control btn btn-info" type="submit" value="save"  name="submit">

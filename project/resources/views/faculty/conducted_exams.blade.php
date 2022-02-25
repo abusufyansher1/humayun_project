@@ -49,7 +49,7 @@ use App\Http\Controllers\TeacherController;?>
         <h4 class="modal-title">Create new exam</h4>
       </div>
       <div class="modal-body">
-        <form action="/43teacher/conduct_exam/add" method="post">
+        <form action="/teacher/conduct_exam/add" method="post">
           @csrf()
           
           <label>Subject</label>
