@@ -94,14 +94,22 @@
               </p>
             </a>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
+            <a href="/student/DMC" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                DMC
+              </p>
+            </a>
+          </li> 
+          <!-- <li class="nav-item">
             <a href="/student/subject/exam/0" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Conducted Exams
               </p>
             </a>
-          </li>
+          </li> -->
          
          
         </ul>

@@ -42,6 +42,8 @@ Route::group(['middleware'=>['AdminProtected']],function(){
  Route::get('/admin/result', [AdminController::class,'view_result']);
  Route::post('/admin/result', [AdminController::class,'view_conducted_exams']);
  Route::get('/admin/result/display/{c_exam_id}', [AdminController::class,'display_result']);
+ Route::get('/admin/subjects/{class_id}', [AdminController::class,'get_subjects_by_class']);
+ Route::get('/admin/student/detail/{std_id}', [AdminController::class,'student_detail']);
 
 });
 Route::group(['middleware'=>['TeacherProtected']],function(){
@@ -57,4 +59,5 @@ Route::group(['middleware'=>['StudentProtected']],function(){
 	Route::get('/student/dashboard', [StudentController::class,'index']);
     Route::get('/student/subjects', [StudentController::class,'get_subjects']);
     Route::get('/student/subject/exam/{id}', [StudentController::class,'get_exams']);
+    Route::get('/student/DMC', [StudentController::class,'get_dmc']);
 });

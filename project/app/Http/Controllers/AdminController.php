@@ -11,6 +11,7 @@ use App\Models\Classes;
 use App\Models\Subject;
 use App\Models\Exam;
 use App\Models\Conducted_exam;
+use App\Models\Semester;
 
 
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class AdminController extends Controller
 		$data->subject=$req->input('subject');
 		$data->faculty_id=$req->input('teacher_id');
 		$data->credit=$req->input('credit');
+		$data->semester_id=$req->input('semester_id');
 		$data->save();
 		return redirect('admin/classes');
 	}
@@ -64,24 +66,32 @@ class AdminController extends Controller
   	$data2->father_name= $req->input('fname');
   	$data2->address= $req->input('address');
   	$data2->contact= $req->input('contact');
+	  $data2->admission_year= $req->input('admission_year');
   	$data2->std_id= $last_user_id;
   	$data2->save();
   	$data3 = new student_enrollment;
   	$data3->class_id= $req->input('class_id');
-  	$data3->admission_year= $req->input('admission_year');
+  	$data3->semester_id= $req->input('semester_id');
   	$data3->std_id= $last_user_id;
   	$data3->save();
+	return  redirect('/admin/students');
   }
     function view_students()
   {
-  	$data=User::Join('student_infos','student_infos.std_id','=','users.id')
-  	->join('student_enrollments','student_enrollments.std_id','=','users.id')
-  	->join('classes','classes.class_id','=','student_enrollments.class_id')
-  	->where(['users.role'=> '3'])->get();
+  	$data=User::select(DB::raw('DISTINCT(users.id)'),'users.name','student_infos.father_name',
+	  'student_infos.admission_year','classes.class')
+	  ->join('student_infos','student_infos.std_id','=','users.id')
+	  
+	  ->join('student_enrollments','student_enrollments.std_id','=','users.id')
+	  ->join('classes','classes.class_id','=','student_enrollments.class_id')
+	  ->get();
   	// return $data;
   	$classes=$this->get_classes();
-  	return view('admin/students',['student_list'=>$data,'classes'=>$classes]);
+	  $semesters=Semester::all();
+	//   return $semesters;
+  	return view('admin/students',['semesters'=>$semesters,'student_list'=>$data,'classes'=>$classes]);
   }
+  
   function get_designations()
   {
   	$data=DB::table('designations')->get();
@@ -133,14 +143,14 @@ class AdminController extends Controller
   {
   	$classes=$this->get_classes();
 	  $teachers=$this->get_teachers();
-	
-  	return view('admin/classes',['class_list'=>$classes,'teacher_list'=>$teachers]);
+	$semesters=Semester::all();
+  	return view('admin/classes',['semesters'=>$semesters,'class_list'=>$classes,'teacher_list'=>$teachers]);
 
   }
   function get_subjects_by_class($req)
   {
-	$data=DB::table('subjects')->where('class_id','=',$req)->get();
-	return $data;
+	$subjects=DB::table('subjects')->join('users','users.id','=','subjects.faculty_id')->join('semesters','semesters.id','=','subjects.semester_id')->where('subjects.class_id','=',$req)->get();
+	return view('admin/subjects',['subjects'=>$subjects]);
   }
   function view_result(Request $req)
   {
@@ -181,4 +191,9 @@ $class_id=$req->input('class_id');
 	//   return $data;
 	  return view('admin/display_result',['data'=>$data]); 
   }
+ function student_detail($std_id)
+ {
+	$std_enrollment=Student_enrollment::join('semesters','semesters.id','=','student_enrollments.semester_id')->where('student_enrollments.std_id','=',$std_id)->get();
+	return view('admin/detail',['std_enrollment'=>$std_enrollment]); 
+ } 
 }

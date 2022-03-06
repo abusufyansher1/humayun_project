@@ -20,23 +20,25 @@
                 <th>Name</th>
                 <th>Father Name</th>
                 
-                <th>Session</th>
+                <th>Admission Year</th>
+             
                 <th>Class</th>
-                
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <?php $sn=0;?>
               @foreach($student_list as $row)
-
+              
               <tr>
                 <td>{{++$sn}}</td>
-                <td>{{ $row->name }}</td>
-                <td>{{ $row->father_name }}</td>
-                <td>{{ $row->admission_year }}</td>
-                <td>{{ $row->class }}</td>
-                <td><a href="">View details</a></td>
+                <td>{{$row->name}}</td>
+                <td>{{$row->father_name}}</td>
+                <td>{{$row->admission_year}}</td>
+                <td>{{$row->class}}</td>
+                <td><a href='/admin/student/detail/{{$row->id}}'>View details</td>
+              
+              
               </tr>
               @endforeach
             </tbody>
@@ -87,6 +89,13 @@
             <option value="">Select Class</option>
           @foreach($classes as $rowclass)
           <option value='{{$rowclass->class_id}}'>{{$rowclass->class}}</option>
+          @endforeach
+          </select>
+          <label>Semester</label>
+          <select class="form-control" type="" name="semester_id">
+            <option value="">Select Semester</option>
+          @foreach($semesters as $rowsemester)
+          <option value='{{$rowsemester->id}}'>{{$rowsemester->semester}}</option>
           @endforeach
           </select>
            <label>Year</label>

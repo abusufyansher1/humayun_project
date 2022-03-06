@@ -13,7 +13,7 @@ use App\Http\Controllers\StudentController;?>
              <table class='table'>
                  <thead>
                      <tr>
-                         <th>#</th><th>Subject</th><th>Credit.Hr</th><th>Instructor</th><th>Exams</th>
+                         <th>#</th><th>Subject</th><th>Semester</th><th>Credit.Hr</th><th>Instructor</th><th>Conducted Exams</th>
                      </tr>
                  </thead>
                  <tbody>
@@ -24,9 +24,12 @@ use App\Http\Controllers\StudentController;?>
                 $conducted_exams=StudentController:: conducted_exams_by_subject($subject_id)->count()
                 ?>
                  <tr>
-                 
-                 <td>{{++$sn}}</td><td>{{$row->subject}}</td><td>{{$row->credit}}</td><td>{{$row->name}}</td>
-                 <td><a href='subject/exam/{{ $subject_id}}'>{{$conducted_exams}}</a></td>
+                 <td>{{++$sn}}</td>
+                   <td>{{$row->subject}}</td>
+                 <td>{{$row->semester}}</td>
+                 <td>{{$row->credit}}</td>
+                 <td>{{$row->name}}</td>
+                 <td><a href='/student/subject/exam/{{$row->subject_id}}'>{{$conducted_exams}}</a></td>
                  </tr>
                  @endforeach
                  </tbody>

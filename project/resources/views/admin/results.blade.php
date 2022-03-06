@@ -49,7 +49,7 @@
                             @if($row2->published_status==0)
                                 <p><span class='badge badge-warning'>Click to publish</span></p>
                                 
-                            @enfi
+                            @endif
                         </td>
                     </tr>
                         @endforeach

@@ -21,7 +21,7 @@ use App\Http\Controllers\AdminController;
               <tr>
                 <th>#</th>
                 <th>Class</th>
-                <th>Course(s)</th>               
+                <!-- <th>Course(s)</th>                -->
                 <th>Action</th>
                 <th>Action</th>
               </tr>
@@ -33,15 +33,8 @@ use App\Http\Controllers\AdminController;
               <tr>
                 <td>{{++$sn}}</td>
                 <td>{{ $row->class }}</td>
-    <?php
-$data=AdminController::get_subjects_by_class($class_id);
 
-?>
-                <td>@foreach($data as $row2)
-                     <span class='badge badge-info'>{{$row2->subject}} ({{$row2->credit}})</span> 
-                    @endforeach
-                </td>
-                <td><a href='#' data-class_id="{{$row->class_id}}" class="addsubjectbtn">Add subject</a></td>
+                <td><a href='/admin/subjects/{{$class_id}}'>View subject(s)</a> | <a href='#' data-class_id="{{$row->class_id}}" class="addsubjectbtn">Add subject</a></td>
                 <td><a href='#'>Edit</a> | <a href='#'>Delete</a></td>
               </tr>
               @endforeach
@@ -115,6 +108,13 @@ $data=AdminController::get_subjects_by_class($class_id);
           
             <option value='{{$rowtech->id}}'>{{$rowtech->name}}
           </option>
+          @endforeach
+          </select>
+          <label>Semester</label>
+          <select class='form-control' name='teacher_id'>
+          <option value="">Select Semester</option>
+          @foreach($semesters as $rowsemester)
+          <option value='{{$rowsemester->id}}'>{{$rowsemester->semester}}</option>
           @endforeach
           </select>
           <label></label>
