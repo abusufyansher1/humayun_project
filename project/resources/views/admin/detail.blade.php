@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Students')
+@section('title','Student Details')
 
 
 @section('mainbody')
@@ -12,8 +12,7 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-12 col-12">
-            <button data-toggle="modal" data-target="#myModal" class="btn btn-info btn-sm float-right">+ Add student</button>
-           <table class="table table-sm">
+               <table class="table table-sm">
             <thead>
               <tr>
                 <th>Semester</th>

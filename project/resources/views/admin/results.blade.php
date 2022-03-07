@@ -20,6 +20,12 @@
                         <option value='{{$row->class_id}}'>{{$row->class}}</option>
                         @endforeach
                     </select>
+                    <select id='semester_id' name='semester_id'>
+                        <option>Select semester</option>
+                        @foreach($semesters as $semrow)
+                        <option value='{{$semrow->id}}'>{{$semrow->semester}}</option>
+                        @endforeach
+                    </select>
                     <input type='submit'>
                 
             </form >
@@ -47,10 +53,15 @@
                         </td>
                         <td>
                             @if($row2->published_status==0)
-                                <p><span class='badge badge-warning'>Click to publish</span></p>
+                                <a href='/admin/result/updatestatus/{{$row2->c_exam_id}}/1'><span class='badge badge-warning'>Click to publish</span></a>
+                                
+                            @endif
+                            @if($row2->published_status==1)
+                                <a href='/admin/result/updatestatus/{{$row2->c_exam_id}}/0'><span class='badge badge-danger'>Click to unpublish</span></a>
                                 
                             @endif
                         </td>
+                        
                     </tr>
                         @endforeach
                    

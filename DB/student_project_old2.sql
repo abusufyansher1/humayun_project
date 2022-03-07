@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2022 at 08:10 PM
+-- Generation Time: Feb 19, 2022 at 04:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -66,7 +66,7 @@ CREATE TABLE `conducted_exams` (
 --
 
 INSERT INTO `conducted_exams` (`id`, `exam_id`, `subject_id`, `published_status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 0, '2022-02-10 11:09:19', '2022-02-10 11:09:19'),
+(1, 1, 1, 1, '2022-02-10 11:09:19', '2022-02-10 11:09:19'),
 (5, 2, 1, 1, '2022-02-11 05:53:07', '2022-02-11 05:53:07'),
 (7, 1, 2, 1, '2022-02-12 19:12:13', '2022-02-12 19:12:13'),
 (9, 1, 1, 1, '2022-02-16 00:21:18', '2022-02-16 00:21:18'),
@@ -225,33 +225,10 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `std_id`, `c_exam_id`, `obt_marks`, `created_at`, `updated_at`) VALUES
-(20, 10, 5, 50, '2022-02-19 08:58:23', '2022-02-19 04:31:41'),
-(25, 3, 9, 100, '2022-02-19 04:31:52', '2022-02-19 04:31:52');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `semesters`
---
-
-CREATE TABLE `semesters` (
-  `id` int(11) NOT NULL,
-  `semester` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `semesters`
---
-
-INSERT INTO `semesters` (`id`, `semester`) VALUES
-(1, '1'),
-(2, '2'),
-(3, '3'),
-(4, '4'),
-(5, '5'),
-(6, '6'),
-(7, '7'),
-(8, '8');
+(19, 3, 5, 100, '2022-02-19 08:58:23', '2022-02-19 04:31:37'),
+(20, 10, 5, 66, '2022-02-19 08:58:23', '2022-02-19 04:31:41'),
+(24, 3, 9, 100, '2022-02-19 04:31:52', '2022-02-19 04:31:52'),
+(25, 10, 9, 100, '2022-02-19 04:31:52', '2022-02-19 04:31:52');
 
 -- --------------------------------------------------------
 
@@ -263,8 +240,7 @@ CREATE TABLE `student_enrollments` (
   `id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   `std_id` int(11) NOT NULL,
-  `semester_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0 COMMENT '0=enrol, 1=promoted, 2=not promoted, 3=droped, 4=admission cancelled, 5=passout',
+  `admission_year` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -273,13 +249,9 @@ CREATE TABLE `student_enrollments` (
 -- Dumping data for table `student_enrollments`
 --
 
-INSERT INTO `student_enrollments` (`id`, `class_id`, `std_id`, `semester_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 1, 0, '2022-02-08 08:59:06', '2022-02-08 08:59:06'),
-(2, 1, 10, 8, 5, '2022-02-08 05:02:11', '2022-02-08 05:02:11'),
-(3, 1, 16, 2, 0, '2022-03-06 12:53:18', '2022-03-06 12:53:18'),
-(4, 1, 19, 1, 0, '2022-03-06 12:54:07', '2022-03-06 12:54:07'),
-(5, 1, 20, 1, 0, '2022-03-06 12:54:21', '2022-03-06 12:54:21'),
-(6, 1, 10, 2, 1, '2022-03-06 18:57:22', '2022-03-06 18:57:22');
+INSERT INTO `student_enrollments` (`id`, `class_id`, `std_id`, `admission_year`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 2020, '2022-02-08 08:59:06', '2022-02-08 08:59:06'),
+(2, 1, 10, 2020, '2022-02-08 05:02:11', '2022-02-08 05:02:11');
 
 -- --------------------------------------------------------
 
@@ -293,7 +265,6 @@ CREATE TABLE `student_infos` (
   `father_name` varchar(60) NOT NULL,
   `address` text NOT NULL,
   `contact` varchar(20) NOT NULL,
-  `admission_year` varchar(20) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -302,12 +273,9 @@ CREATE TABLE `student_infos` (
 -- Dumping data for table `student_infos`
 --
 
-INSERT INTO `student_infos` (`id`, `std_id`, `father_name`, `address`, `contact`, `admission_year`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Test Father', 'mardan', '332', '2022', '2022-02-08 08:34:52', '2022-02-08 08:34:52'),
-(2, 10, 'Aurang Sher', 'village chargul po box surkh dheri, rustam, mardan', '03329710685', '2022', '2022-02-08 05:02:11', '2022-02-08 05:02:11'),
-(3, 16, 'test 2', 'mardan', '0000000', '2022', '2022-03-06 12:53:18', '2022-03-06 12:53:18'),
-(4, 19, 'test 2', 'mardan', '0000000', '2022', '2022-03-06 12:54:07', '2022-03-06 12:54:07'),
-(5, 20, 'test 2', 'mardan', '0000000', '2022', '2022-03-06 12:54:21', '2022-03-06 12:54:21');
+INSERT INTO `student_infos` (`id`, `std_id`, `father_name`, `address`, `contact`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Test Father', 'mardan', '332', '2022-02-08 08:34:52', '2022-02-08 08:34:52'),
+(2, 10, 'Aurang Sher', 'village chargul po box surkh dheri, rustam, mardan', '03329710685', '2022-02-08 05:02:11', '2022-02-08 05:02:11');
 
 -- --------------------------------------------------------
 
@@ -321,7 +289,6 @@ CREATE TABLE `subjects` (
   `class_id` int(11) NOT NULL,
   `faculty_id` int(11) NOT NULL,
   `credit` int(11) NOT NULL,
-  `semester_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -330,16 +297,16 @@ CREATE TABLE `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`subject_id`, `subject`, `class_id`, `faculty_id`, `credit`, `semester_id`, `created_at`, `updated_at`) VALUES
-(1, 'abc', 1, 11, 3, 2, '2022-02-09 06:39:55', '2022-02-09 06:39:55'),
-(2, 'test', 1, 15, 2, 2, '2022-02-10 03:26:25', '2022-02-10 03:26:25'),
-(3, 'Chemistry', 1, 15, 4, 1, '2022-02-10 03:27:12', '2022-02-10 03:27:12'),
-(4, 'Chemistry', 1, 15, 1, 2, '2022-02-10 03:27:28', '2022-02-10 03:27:28'),
-(5, 'computer', 2, 15, 0, 2, '2022-02-10 03:27:41', '2022-02-10 03:27:41'),
-(6, 'English', 2, 15, 4, 1, '2022-02-10 03:42:56', '2022-02-10 03:42:56'),
-(7, 'Big Data', 1, 15, 4, 0, '2022-02-10 13:10:42', '2022-02-10 13:10:42'),
-(8, 'Telecom', 3, 15, 3, 0, '2022-02-10 13:11:04', '2022-02-10 13:11:04'),
-(9, 'Big Data', 3, 15, 2, 0, '2022-02-10 13:11:11', '2022-02-10 13:11:11');
+INSERT INTO `subjects` (`subject_id`, `subject`, `class_id`, `faculty_id`, `credit`, `created_at`, `updated_at`) VALUES
+(1, 'abc', 1, 11, 0, '2022-02-09 06:39:55', '2022-02-09 06:39:55'),
+(2, 'test', 1, 15, 0, '2022-02-10 03:26:25', '2022-02-10 03:26:25'),
+(3, 'Chemistry', 1, 15, 0, '2022-02-10 03:27:12', '2022-02-10 03:27:12'),
+(4, 'Chemistry', 1, 15, 0, '2022-02-10 03:27:28', '2022-02-10 03:27:28'),
+(5, 'computer', 2, 15, 0, '2022-02-10 03:27:41', '2022-02-10 03:27:41'),
+(6, 'English', 2, 15, 4, '2022-02-10 03:42:56', '2022-02-10 03:42:56'),
+(7, 'Big Data', 1, 15, 4, '2022-02-10 13:10:42', '2022-02-10 13:10:42'),
+(8, 'Telecom', 3, 15, 3, '2022-02-10 13:11:04', '2022-02-10 13:11:04'),
+(9, 'Big Data', 3, 15, 2, '2022-02-10 13:11:11', '2022-02-10 13:11:11');
 
 -- --------------------------------------------------------
 
@@ -393,10 +360,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (3, 'test student', 'test@gmail.com', NULL, 'mardan123', NULL, 3, NULL, NULL),
 (10, 'Abusufyan Sher', 'shersufyan2@gmail.com', NULL, 'mardan123', NULL, 3, '2022-02-08 05:02:11', '2022-02-08 05:02:11'),
 (11, 'Teacher1', 'teacher@gmail.com', NULL, 'mardan123', NULL, 2, NULL, NULL),
-(15, 'wali ullah', 'teacher323@gmail.com', NULL, 'mardan', NULL, 2, '2022-02-08 06:04:48', '2022-02-08 06:04:48'),
-(16, 'test student', 'shersufyan5@gmail.com', NULL, 'mardan123', NULL, 3, '2022-03-06 12:53:18', '2022-03-06 12:53:18'),
-(19, 'test student', 'shersufyan6@gmail.com', NULL, 'mardan123', NULL, 3, '2022-03-06 12:54:07', '2022-03-06 12:54:07'),
-(20, 'test student', 'shersufyan9@gmail.com', NULL, 'mardan123', NULL, 3, '2022-03-06 12:54:21', '2022-03-06 12:54:21');
+(15, 'wali ullah', 'teacher323@gmail.com', NULL, 'mardan', NULL, 2, '2022-02-08 06:04:48', '2022-02-08 06:04:48');
 
 --
 -- Indexes for dumped tables
@@ -466,12 +430,6 @@ ALTER TABLE `results`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `std_id` (`std_id`,`c_exam_id`),
   ADD KEY `results_ibfk_3` (`c_exam_id`);
-
---
--- Indexes for table `semesters`
---
-ALTER TABLE `semesters`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `student_enrollments`
@@ -568,22 +526,16 @@ ALTER TABLE `results`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `semesters`
---
-ALTER TABLE `semesters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
 -- AUTO_INCREMENT for table `student_enrollments`
 --
 ALTER TABLE `student_enrollments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `student_infos`
 --
 ALTER TABLE `student_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -601,7 +553,7 @@ ALTER TABLE `teacher_infos`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

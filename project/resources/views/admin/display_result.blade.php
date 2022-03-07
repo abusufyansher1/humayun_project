@@ -13,7 +13,7 @@
         <div class="row">
            
             <div class='col-lg-12'>
-                <table class='table'>
+                <table class='table' id='example1'>
                     <thead>
                         <tr><th>#</th><th>Student Name</th><th>Obt Marks</th></tr>
                     </thead>

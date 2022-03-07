@@ -155,9 +155,9 @@ class AdminController extends Controller
   function view_result(Request $req)
   {
   	$classes=$this->get_classes();
-	 
+	 $semesters=Semester::get();
 
-  	return view('admin/results',['class_list'=>$classes]);	
+  	return view('admin/results',['class_list'=>$classes,'semesters'=>$semesters]);	
 	 
 
   }
@@ -165,6 +165,7 @@ class AdminController extends Controller
   {
 	$classes=$this->get_classes();
 $class_id=$req->input('class_id');
+$semester_id=$req->input('semester_id');
   $conducted_exam=DB::table('conducted_exams')
 			->select('conducted_exams.published_status','conducted_exams.id as c_exam_id','exams.exam','classes.class','subjects.subject')
   ->join('exams','exams.id','=','conducted_exams.exam_id')
@@ -172,11 +173,14 @@ $class_id=$req->input('class_id');
   ->join('classes','classes.class_id','=','subjects.class_id')
 	
 			  ->where('subjects.class_id','=',$class_id)
+			  ->where('subjects.semester_id','=',$semester_id)
 			  
 			  ->get();
   	
 	// return $class_id;
-		  return view('admin/results',['class_list'=>$classes,'conducted_exam'=>$conducted_exam]);	
+	$semesters=Semester::get();
+
+		  return view('admin/results',['semesters'=>$semesters,'class_list'=>$classes,'conducted_exam'=>$conducted_exam]);	
 	 
 
   }
@@ -189,11 +193,19 @@ $class_id=$req->input('class_id');
 	  ->join('conducted_exams','conducted_exams.id','=','results.c_exam_id')
 	  ->where('conducted_exams.id','=',$conducted_exam_id)->get();
 	//   return $data;
+	
 	  return view('admin/display_result',['data'=>$data]); 
   }
  function student_detail($std_id)
  {
 	$std_enrollment=Student_enrollment::join('semesters','semesters.id','=','student_enrollments.semester_id')->where('student_enrollments.std_id','=',$std_id)->get();
 	return view('admin/detail',['std_enrollment'=>$std_enrollment]); 
- } 
+ }
+ function update_exam_status($c_exam_id,$status) 
+ {
+	$query = DB::table('conducted_exams')
+              ->where('id', $c_exam_id)
+              ->update(['published_status' => $status]);
+return redirect('/admin/result/');
+ }
 }

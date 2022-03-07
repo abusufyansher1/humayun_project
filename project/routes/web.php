@@ -44,6 +44,7 @@ Route::group(['middleware'=>['AdminProtected']],function(){
  Route::get('/admin/result/display/{c_exam_id}', [AdminController::class,'display_result']);
  Route::get('/admin/subjects/{class_id}', [AdminController::class,'get_subjects_by_class']);
  Route::get('/admin/student/detail/{std_id}', [AdminController::class,'student_detail']);
+ Route::get('/admin/result/updatestatus/{c_exam_id}/{status}', [AdminController::class,'update_exam_status']);
 
 });
 Route::group(['middleware'=>['TeacherProtected']],function(){
