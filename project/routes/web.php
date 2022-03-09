@@ -38,6 +38,7 @@ Route::group(['middleware'=>['AdminProtected']],function(){
  Route::get('/admin/teachers', [AdminController::class,'view_teachers']);
  Route::get('/admin/classes', [AdminController::class,'view_classes']);
  Route::post('/admin/class/add', [AdminController::class,'add_class']);
+ Route::post('/admin/class/edit', [AdminController::class,'edit_class']);
  Route::post('/admin/course/add', [AdminController::class,'add_course']);
  Route::get('/admin/result', [AdminController::class,'view_result']);
  Route::post('/admin/result', [AdminController::class,'view_conducted_exams']);
@@ -45,6 +46,8 @@ Route::group(['middleware'=>['AdminProtected']],function(){
  Route::get('/admin/subjects/{class_id}', [AdminController::class,'get_subjects_by_class']);
  Route::get('/admin/student/detail/{std_id}', [AdminController::class,'student_detail']);
  Route::get('/admin/result/updatestatus/{c_exam_id}/{status}', [AdminController::class,'update_exam_status']);
+ 
+ Route::get('/admin/class/delete/{class_id}', [AdminController::class,'delete_class']);
 
 });
 Route::group(['middleware'=>['TeacherProtected']],function(){

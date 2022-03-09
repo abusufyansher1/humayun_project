@@ -27,6 +27,25 @@ class AdminController extends Controller
 	// {
 	// 	return $req;
 	// }
+	function edit_class(Request $req)
+	{
+		
+	
+		$class_id=$req->input('class_id');
+		$classname=$req->input('classname');
+		Classes::where('class_id', $class_id)
+      ->update(['class' => $classname]);
+	  
+		return redirect('/admin/classes');
+	}
+	function delete_class($class_id)
+	{
+		
+		Classes::where('class_id', $class_id)
+      ->delete();
+	  
+		return redirect('/admin/classes');
+	}
 	function add_class(Request $req)
 	{
 		$data=	new Classes;

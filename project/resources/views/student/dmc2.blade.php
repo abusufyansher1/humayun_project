@@ -76,10 +76,9 @@ use App\Http\Controllers\StudentController;?>
                  
             
          @endforeach
-         <?php
-        $gpa=number_format($totalnp/$totalnp,2); ?>
+       
                 <tr>
-                    <td>GPA</td><td>{{$totalnp}}</td>
+                    <td>GPA</td><td></td>
                 </tr>
                  @endforeach
                  </tbody>
@@ -89,5 +88,5 @@ use App\Http\Controllers\StudentController;?>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-  
+    
   @endsection

@@ -35,7 +35,7 @@ use App\Http\Controllers\AdminController;
                 <td>{{ $row->class }}</td>
 
                 <td><a href='/admin/subjects/{{$class_id}}'>View subject(s)</a> | <a href='#' data-class_id="{{$row->class_id}}" class="addsubjectbtn">Add subject</a></td>
-                <td><a href='#'>Edit</a> | <a href='#'>Delete</a></td>
+                <td><a href='#' data-class_id="{{$row->class_id}}" data-classname="{{$row->class}}" class="editclass">Edit</a> | <a href='/admin/class/delete/{{$row->class_id}}' onclick='return confirm("Are you sure?");'>Delete</a></td>
               </tr>
               @endforeach
             </tbody>
@@ -129,6 +129,35 @@ use App\Http\Controllers\AdminController;
 
   </div>
 </div>
+
+<!-- Modal -->
+<div id="editclassmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- add subject Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit class</h4>
+      </div>
+      <div class="modal-body">
+        <form action="class/edit" method="post">
+          @csrf()
+          <input id='edit_modal_class_id' type='hidden' name='class_id'>
+          <label>Class</label>
+          <input class="form-control" type="" id='edit_modal_classname' name="classname">
+         
+          <label></label>
+          <input class="form-control btn btn-info" type="submit" value="save"  name="submit">
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
  <script>
     
@@ -140,6 +169,19 @@ $(document).ready(function(){
     });
 });
 </script>
+<script>
+    
+    $(document).ready(function(){
+        $(".editclass").on("click", function(){
+            var class_id = $(this).attr("data-class_id");
+            var classname = $(this).attr("data-classname");
+            $("#edit_modal_class_id").val(class_id);
+            $("#edit_modal_classname").val(classname);
+            $("#editclassmodal").modal('show');
+            
+        });
+    });
+    </script>
   @endsection
   
  

@@ -13,7 +13,7 @@ use App\Http\Controllers\TeacherController;?>
             <div class='col-lg-12'>
                 </div>
          <div class='col-lg-12'>
-             <table>
+             <table class='table table-sm'>
                  <thead>
                      <tr>
                          <th>RollNo</th> <th>Student name</th><th>ObtM.</th>
@@ -51,14 +51,15 @@ use App\Http\Controllers\TeacherController;?>
                      <input type='hidden' name='std_id[{{$no}}]' value='{{$std_id}}'>
                      
                     
-                     <input type='number' name='obtmark[{{$no}}]' value='{{$obt_marks}}'>
+                     <input  type='number' name='obtmark[{{$no}}]' value='{{$obt_marks}}'>
                     </td>
                  </tr>
            
             @endforeach
             <input type='hidden' name='no' value='{{$no}}'>
             <input type='hidden' name='c_exam_id' value='{{$c_exam_id}}'>
-            <input type='submit' name='submit' value=''>
+            <tr><td><input type='submit' name='submit' value=''></td></tr>
+            
             </form>
             </tbody>
             </table>

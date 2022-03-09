@@ -36,7 +36,7 @@
                 <td>{{ $row->designation }}</td>
                 <td>{{ $row->type }}</td>
                 <td>{{ $row->doj }}</td>
-                <td><a href="">View details</a></td>
+                <td></td>
               </tr>
               @endforeach
             </tbody>
