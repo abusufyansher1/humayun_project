@@ -46,8 +46,7 @@ use App\Http\Controllers\AdminController;
                <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-
+  <!-- /.content -->
   <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -96,13 +95,13 @@ use App\Http\Controllers\AdminController;
       <div class="modal-body">
         <form action="course/add" method="post">
           @csrf()
-          <input id='modal_class_id' type='hidden' name='class_id'>
+          <input id='modal_class_id' type='hidden' name='class_id' required>
           <label>Subject</label>
-          <input class="form-control" type="" name="subject">
+          <input class="form-control" type="" name="subject" required>
           <label>Credit Hrs</label>
-          <input class="form-control" type="" name="credit">
+          <input class="form-control" type="number" name="credit" required>
           <label>Assign Teacher</label>
-          <select class='form-control' name='teacher_id'>
+          <select class='form-control' name='teacher_id' required>
           @foreach($teacher_list as $rowtech)
           
           
@@ -111,7 +110,7 @@ use App\Http\Controllers\AdminController;
           @endforeach
           </select>
           <label>Semester</label>
-          <select class='form-control' name='teacher_id'>
+          <select class='form-control' name='semester_id' required>
           <option value="">Select Semester</option>
           @foreach($semesters as $rowsemester)
           <option value='{{$rowsemester->id}}'>{{$rowsemester->semester}}</option>
