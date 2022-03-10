@@ -23,7 +23,7 @@ use App\Http\Controllers\TeacherController;?>
              
              <tbody>
                 <form action='/teacher/saveresult' method='post'>
-            @csrf;
+            @csrf
               <?php   $no=0;?>
             
             @foreach($enrol_std as $row)
@@ -58,7 +58,7 @@ use App\Http\Controllers\TeacherController;?>
             @endforeach
             <input type='hidden' name='no' value='{{$no}}'>
             <input type='hidden' name='c_exam_id' value='{{$c_exam_id}}'>
-            <tr><td><input type='submit' name='submit' value=''></td></tr>
+            <tr><td><input type='submit' name='submit' value='Save' class='btn btn-info'></td></tr>
             
             </form>
             </tbody>

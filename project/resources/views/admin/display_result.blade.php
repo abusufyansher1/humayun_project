@@ -15,7 +15,7 @@
             <div class='col-lg-12'>
                 <table class='table' id='example1'>
                     <thead>
-                        <tr><th>#</th><th>Student Name</th><th>Obt Marks</th></tr>
+                        <tr><th>#</th><th>Student Name</th><th>Total</th><th>Obt Marks</th></tr>
                     </thead>
                     <tbody>
                         <?php if(isset($data))
@@ -26,6 +26,7 @@
                             <td>
                             {{$row->name}}
                         </td>
+                        <td>{{$row->total_marks}}</td>
                         <td>
                                 
                             {{$row->obt_marks}}

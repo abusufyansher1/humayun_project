@@ -9,8 +9,9 @@ use App\Http\Controllers\StudentController;?>
 <section class="content">
       <div class="container-fluid">
         <div class="row">
+            <p>Ctrl+P = Print/PDF</p>
          <div class='col-lg-12'>
-             <table class='table'>
+             <table class='table example2'>
                  <thead>
                      <tr>
                          <th>#</th><th>Subject</th><th>Semester</th><th>Credit.Hr</th><th>Obt marks</th><th>GP</th><th>NP</th>
@@ -30,7 +31,7 @@ use App\Http\Controllers\StudentController;?>
                $subjects=StudentController:: get_subject_by_class_semester($class_id,$semester_id);
          ?>
           <tr>
-                 <td>Semester:{{$semester_id}} </td>
+                 <td colspan='7'>Semester:{{$semester_id}} </td>
              </tr>
        @foreach($subjects as $rowsubject)
        <?php 
@@ -78,7 +79,7 @@ use App\Http\Controllers\StudentController;?>
          @endforeach
        
                 <tr>
-                    <td>GPA</td><td></td>
+                    <td colspan='6'>GPA</td><td></td>
                 </tr>
                  @endforeach
                  </tbody>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2022 at 06:21 AM
+-- Generation Time: Mar 07, 2022 at 08:10 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -41,7 +41,10 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`class_id`, `class`, `equivallent`, `eligibility`, `created_at`, `updated_at`) VALUES
-(2, 'MCS', '16 Years', 'Bsc in Computer Science', '2022-02-09 02:16:07', '2022-02-09 02:16:07');
+(1, 'BS Software', '16 Years', 'Fsc, Fcs', '2022-02-08 08:58:51', '2022-02-08 08:58:51'),
+(2, 'MCS', '16 Years', 'Bsc in Computer Science', '2022-02-09 02:16:07', '2022-02-09 02:16:07'),
+(3, 'MS CS', '18 Years', 'BSCS, Mcs', '2022-02-10 13:10:53', '2022-02-10 13:10:53'),
+(4, 'PhD', '20 Years', 'MS/Mphil in CS', '2022-02-19 06:17:42', '2022-02-19 06:17:42');
 
 -- --------------------------------------------------------
 
@@ -63,7 +66,11 @@ CREATE TABLE `conducted_exams` (
 --
 
 INSERT INTO `conducted_exams` (`id`, `exam_id`, `subject_id`, `published_status`, `created_at`, `updated_at`) VALUES
-(11, 1, 5, 0, '2022-03-09 14:49:43', '2022-03-09 14:49:43');
+(1, 1, 1, 0, '2022-02-10 11:09:19', '2022-02-10 11:09:19'),
+(5, 2, 1, 1, '2022-02-11 05:53:07', '2022-02-11 05:53:07'),
+(7, 1, 2, 1, '2022-02-12 19:12:13', '2022-02-12 19:12:13'),
+(9, 1, 1, 1, '2022-02-16 00:21:18', '2022-02-16 00:21:18'),
+(10, 1, 1, 1, '2022-02-16 00:21:47', '2022-02-16 00:21:47');
 
 -- --------------------------------------------------------
 
@@ -218,7 +225,8 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `std_id`, `c_exam_id`, `obt_marks`, `created_at`, `updated_at`) VALUES
-(26, 20, 11, 10, '2022-03-09 14:51:47', '2022-03-09 14:51:47');
+(20, 10, 5, 50, '2022-02-19 08:58:23', '2022-02-19 04:31:41'),
+(25, 3, 9, 100, '2022-02-19 04:31:52', '2022-02-19 04:31:52');
 
 -- --------------------------------------------------------
 
@@ -266,7 +274,12 @@ CREATE TABLE `student_enrollments` (
 --
 
 INSERT INTO `student_enrollments` (`id`, `class_id`, `std_id`, `semester_id`, `status`, `created_at`, `updated_at`) VALUES
-(7, 2, 20, 2, 0, '2022-03-09 19:50:57', '2022-03-09 19:50:57');
+(1, 1, 3, 1, 0, '2022-02-08 08:59:06', '2022-02-08 08:59:06'),
+(2, 1, 10, 8, 5, '2022-02-08 05:02:11', '2022-02-08 05:02:11'),
+(3, 1, 16, 2, 0, '2022-03-06 12:53:18', '2022-03-06 12:53:18'),
+(4, 1, 19, 1, 0, '2022-03-06 12:54:07', '2022-03-06 12:54:07'),
+(5, 1, 20, 1, 0, '2022-03-06 12:54:21', '2022-03-06 12:54:21'),
+(6, 1, 10, 2, 1, '2022-03-06 18:57:22', '2022-03-06 18:57:22');
 
 -- --------------------------------------------------------
 
@@ -318,8 +331,15 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`subject_id`, `subject`, `class_id`, `faculty_id`, `credit`, `semester_id`, `created_at`, `updated_at`) VALUES
+(1, 'abc', 1, 11, 3, 2, '2022-02-09 06:39:55', '2022-02-09 06:39:55'),
+(2, 'test', 1, 15, 2, 2, '2022-02-10 03:26:25', '2022-02-10 03:26:25'),
+(3, 'Chemistry', 1, 15, 4, 1, '2022-02-10 03:27:12', '2022-02-10 03:27:12'),
+(4, 'Chemistry', 1, 15, 1, 2, '2022-02-10 03:27:28', '2022-02-10 03:27:28'),
 (5, 'computer', 2, 15, 0, 2, '2022-02-10 03:27:41', '2022-02-10 03:27:41'),
-(6, 'English', 2, 15, 4, 1, '2022-02-10 03:42:56', '2022-02-10 03:42:56');
+(6, 'English', 2, 15, 4, 1, '2022-02-10 03:42:56', '2022-02-10 03:42:56'),
+(7, 'Big Data', 1, 15, 4, 0, '2022-02-10 13:10:42', '2022-02-10 13:10:42'),
+(8, 'Telecom', 3, 15, 3, 0, '2022-02-10 13:11:04', '2022-02-10 13:11:04'),
+(9, 'Big Data', 3, 15, 2, 0, '2022-02-10 13:11:11', '2022-02-10 13:11:11');
 
 -- --------------------------------------------------------
 
@@ -343,9 +363,8 @@ CREATE TABLE `teacher_infos` (
 --
 
 INSERT INTO `teacher_infos` (`id`, `user_id`, `qualification`, `doj`, `designation_id`, `employment_type_id`, `created_at`, `updated_at`) VALUES
-(1, 11, 'PHD', '2020-12-01', 1, 1, '2022-02-08 10:51:37', '2022-03-09 14:21:31'),
-(2, 15, 'Mphil', '2023-01-01', 1, 1, '2022-02-08 06:04:48', '2022-02-08 06:04:48'),
-(7, 25, 'asd', '2022-01-01', 1, 1, '2022-03-09 13:55:55', '2022-03-09 13:55:55');
+(1, 11, 'PHD', '2020-12-01', 1, 1, '2022-02-08 10:51:37', '2022-02-08 10:51:37'),
+(2, 15, 'Mphil', '2023-01-01', 1, 1, '2022-02-08 06:04:48', '2022-02-08 06:04:48');
 
 -- --------------------------------------------------------
 
@@ -373,12 +392,11 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (2, 'Abusufyan Sher', 'shersufyan@gmail.com', NULL, 'mardan123', NULL, 1, '2022-02-06 07:26:25', '2022-02-06 07:26:25'),
 (3, 'test student', 'test@gmail.com', NULL, 'mardan123', NULL, 3, NULL, NULL),
 (10, 'Abusufyan Sher', 'shersufyan2@gmail.com', NULL, 'mardan123', NULL, 3, '2022-02-08 05:02:11', '2022-02-08 05:02:11'),
-(11, 'Teacher12', 'teacher@gmail.com', NULL, 'mardan123', NULL, 2, NULL, '2022-03-09 14:21:31'),
+(11, 'Teacher1', 'teacher@gmail.com', NULL, 'mardan123', NULL, 2, NULL, NULL),
 (15, 'wali ullah', 'teacher323@gmail.com', NULL, 'mardan', NULL, 2, '2022-02-08 06:04:48', '2022-02-08 06:04:48'),
 (16, 'test student', 'shersufyan5@gmail.com', NULL, 'mardan123', NULL, 3, '2022-03-06 12:53:18', '2022-03-06 12:53:18'),
 (19, 'test student', 'shersufyan6@gmail.com', NULL, 'mardan123', NULL, 3, '2022-03-06 12:54:07', '2022-03-06 12:54:07'),
-(20, 'test student', 'shersufyan9@gmail.com', NULL, 'mardan123', NULL, 3, '2022-03-06 12:54:21', '2022-03-06 12:54:21'),
-(25, 'Abusufyan Sher', 'shersasdaufyan2@gmail.com', NULL, 'mardan123', NULL, 2, '2022-03-09 13:55:55', '2022-03-09 13:55:55');
+(20, 'test student', 'shersufyan9@gmail.com', NULL, 'mardan123', NULL, 3, '2022-03-06 12:54:21', '2022-03-06 12:54:21');
 
 --
 -- Indexes for dumped tables
@@ -394,9 +412,7 @@ ALTER TABLE `classes`
 -- Indexes for table `conducted_exams`
 --
 ALTER TABLE `conducted_exams`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `exam_id` (`exam_id`),
-  ADD KEY `subject_id` (`subject_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `designations`
@@ -462,32 +478,29 @@ ALTER TABLE `semesters`
 --
 ALTER TABLE `student_enrollments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `student_enrollments_ibfk_1` (`class_id`),
-  ADD KEY `student_enrollments_ibfk_2` (`std_id`);
+  ADD KEY `class_id` (`class_id`),
+  ADD KEY `std_id` (`std_id`);
 
 --
 -- Indexes for table `student_infos`
 --
 ALTER TABLE `student_infos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `student_infos_ibfk_1` (`std_id`);
+  ADD KEY `std_id` (`std_id`);
 
 --
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
   ADD PRIMARY KEY (`subject_id`),
-  ADD KEY `subjects_ibfk_1` (`class_id`),
-  ADD KEY `subjects_ibfk_2` (`faculty_id`);
+  ADD KEY `class_id` (`class_id`),
+  ADD KEY `user_id` (`faculty_id`);
 
 --
 -- Indexes for table `teacher_infos`
 --
 ALTER TABLE `teacher_infos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `designation_id` (`designation_id`),
-  ADD KEY `employment_type_id` (`employment_type_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -510,7 +523,7 @@ ALTER TABLE `classes`
 -- AUTO_INCREMENT for table `conducted_exams`
 --
 ALTER TABLE `conducted_exams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `designations`
@@ -552,7 +565,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `semesters`
@@ -564,7 +577,7 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `student_enrollments`
 --
 ALTER TABLE `student_enrollments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `student_infos`
@@ -582,59 +595,44 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `teacher_infos`
 --
 ALTER TABLE `teacher_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `conducted_exams`
---
-ALTER TABLE `conducted_exams`
-  ADD CONSTRAINT `conducted_exams_ibfk_1` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `conducted_exams_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`subject_id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `results`
 --
 ALTER TABLE `results`
-  ADD CONSTRAINT `results_ibfk_2` FOREIGN KEY (`std_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `results_ibfk_3` FOREIGN KEY (`c_exam_id`) REFERENCES `conducted_exams` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `results_ibfk_2` FOREIGN KEY (`std_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `results_ibfk_3` FOREIGN KEY (`c_exam_id`) REFERENCES `conducted_exams` (`id`);
 
 --
 -- Constraints for table `student_enrollments`
 --
 ALTER TABLE `student_enrollments`
-  ADD CONSTRAINT `student_enrollments_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`class_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `student_enrollments_ibfk_2` FOREIGN KEY (`std_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `student_enrollments_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`class_id`),
+  ADD CONSTRAINT `student_enrollments_ibfk_2` FOREIGN KEY (`std_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `student_infos`
 --
 ALTER TABLE `student_infos`
-  ADD CONSTRAINT `student_infos_ibfk_1` FOREIGN KEY (`std_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `student_infos_ibfk_1` FOREIGN KEY (`std_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `subjects`
 --
 ALTER TABLE `subjects`
-  ADD CONSTRAINT `subjects_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`class_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subjects_ibfk_2` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `teacher_infos`
---
-ALTER TABLE `teacher_infos`
-  ADD CONSTRAINT `teacher_infos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `teacher_infos_ibfk_2` FOREIGN KEY (`designation_id`) REFERENCES `designations` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `teacher_infos_ibfk_3` FOREIGN KEY (`employment_type_id`) REFERENCES `employment_types` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `subjects_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`class_id`),
+  ADD CONSTRAINT `subjects_ibfk_2` FOREIGN KEY (`faculty_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

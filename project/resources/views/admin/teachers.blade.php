@@ -29,14 +29,15 @@
             <tbody>
               <?php $sn=0;?>
               @foreach($teacher_list as $row)
-
+             
               <tr>
                 <td>{{++$sn}}</td>
                 <td>{{ $row->name }}</td>
                 <td>{{ $row->designation }}</td>
                 <td>{{ $row->type }}</td>
                 <td>{{ $row->doj }}</td>
-                <td></td>
+                <td><a href='#' data-userid="{{$row->id}}" data-username="{{$row->name}}" data-doj="{{$row->doj}}" class="editteacher" >Edit</a> | <a href='/admin/user/delete/{{$row->id}}'  onclick='return confirm("Are you sure?");'>Delete</a></td>
+            
               </tr>
               @endforeach
             </tbody>
@@ -107,4 +108,53 @@
 
   </div>
 </div>  
+
+<!-- Modal -->
+<div id="editteachermodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- add subject Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit teacher</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/admin/user/edit" method="post">
+          @csrf()
+          <input id='edit_modal_user_id' type='hidden' name='userid'>
+          <label>Name</label>
+          <input class="form-control" type="" id='edit_modal_username' name="username">
+          <label>DOJ</label>
+          <input class="form-control" type="date" id='edit_modal_doj' name="doj">
+         
+          <label></label>
+          <input class="form-control btn btn-info" type="submit" value="save"  name="submit">
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+ <script>
+
+$(document).ready(function(){
+        $(".editteacher").on("click", function(){
+          // alert('Hello world');
+            var userid = $(this).attr("data-userid");
+            var username = $(this).attr("data-username");
+            var doj = $(this).attr("data-doj");
+            $("#edit_modal_user_id").val(userid);
+            $("#edit_modal_username").val(username);
+            $("#edit_modal_doj").val(doj);
+            $("#editteachermodal").modal('show');
+
+            
+        });
+    });
+    </script>
   @endsection

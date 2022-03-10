@@ -124,6 +124,7 @@ class AdminController extends Controller
   function view_teachers()
   {
   	$data=User::Join('teacher_infos','teacher_infos.user_id','=','users.id')
+	  	->select('users.id','users.name','designations.designation','employment_types.type','teacher_infos.doj')
   		->join('employment_types','employment_types.id','=','teacher_infos.employment_type_id')
   		->join('designations','designations.id','=','teacher_infos.designation_id')
   	  	->where(['users.role'=> '2'])->get();
@@ -207,9 +208,11 @@ $semester_id=$req->input('semester_id');
   {
 	  $conducted_exam_id=$req;
 	$data=  DB::table('results')
-	 	->select('users.name','results.obt_marks') 
+	 	->select('users.name','results.obt_marks','exams.total_marks') 
 	  ->join('users','users.id','=','results.std_id')
+	 
 	  ->join('conducted_exams','conducted_exams.id','=','results.c_exam_id')
+	  ->join('exams','exams.id','=','conducted_exams.exam_id')
 	  ->where('conducted_exams.id','=',$conducted_exam_id)->get();
 	//   return $data;
 	
@@ -226,5 +229,43 @@ $semester_id=$req->input('semester_id');
               ->where('id', $c_exam_id)
               ->update(['published_status' => $status]);
 return redirect('/admin/result/');
+ }
+ function delete_teacher($id)
+ {
+	User::where('id', $id)
+      ->delete();
+	  return redirect('/admin/teachers');   
+ }
+ function delete_course($id,$classid)
+ {
+	Subject::where('subject_id', $id)
+      ->delete();
+	  $link='/admin/subjects/'.$classid;
+	  return redirect($link);   
+ }
+ function edit_user(Request $req) 
+ {
+	$user_id=$req->input('userid');
+	$username=$req->input('username');
+	$doj=$req->input('doj');
+	User::where('id', $user_id)
+              ->update(['name' => $username]);
+ Teacher_info::where('user_id', $user_id)
+              ->update(['doj' => $doj]);
+return redirect('/admin/teachers');
+ }
+ function edit_course(Request $req) 
+ {
+	$subject_id=$req->input('subject_id');
+	$class_id=$req->input('class_id');
+	$subject=$req->input('subject');
+	
+	$credit=$req->input('credit');
+	
+	Subject::where('subject_id', $subject_id)
+          
+			  ->update(['credit' => $credit,'subject' => $subject]);
+		$link="/admin/subjects/".$class_id;
+return redirect($link);
  }
 }
